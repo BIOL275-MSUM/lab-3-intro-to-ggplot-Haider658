@@ -13,9 +13,18 @@ Welcome to my Lab 2 repository for Quantitative Biology BIOL 275 at MSUM.
 
 The objectives of this lab are:
 
-- _How to represent data using bar graph_
-- _How to set the image width for an R Markdown code chunk_
-
+- _Use the layered grammar of graphics_
+- _Create a blank graph using the ggplot() function_
+- _Add geometric objects to a graph_
+- _Define an aesthetic mapping for a graph_
+- _Add labels to a graph_
+- _Fix some common styling_
+- _Create a graph showing the distribution of a single variable_
+- _Create a bar chart for a categorical variable using the geom_col() and geom_bar() functions_
+- _Arrange the categories in a bar chart by frequency_
+- _Create a histogram for a numerical variable using the geom_histogram() function_
+- _Choose and set appropriate histogram bin widths_
+- _Set the image width for an R Markdown code chunk_
 ## Repository contents
 
 The repository contains the following scripts:
