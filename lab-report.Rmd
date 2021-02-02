@@ -1,6 +1,6 @@
 ---
 title: "Lab 3 Report"
-author: "___"
+author: "_Haider_"
 date: "`r format(Sys.Date())`"
 output: github_document
 ---
@@ -11,19 +11,53 @@ Instructions for this lab report can be found on [Your assignment section of Lab
 
 > A. Insert an R code chunk and create a graph depicting the frequency distribution of the 35 mass measurements. It should have legible text and appropriate axis labels.
 
-\_\_\_
+```{r}
+# load packages -----------------------------------------------------------
+
+library(tidyverse)
+
+# Fireflies ---------------------------------------------------------------
+
+fireflies_data <- read_csv("https://whitlockschluter.zoology.ubc.ca/wp-content/data/chapter02/chap02q19FireflySpermatophoreMass.csv")
+fireflies_data
+distinct(fireflies_data, spermatophoreMass)
+count(fireflies_data, spermatophoreMass)
+ggplot(data = fireflies_data)
+ggplot(data = fireflies_data) +
+  geom_bar(mapping = aes(x = spermatophoreMass))
+ggplot(data = fireflies_data) +
+  geom_bar(mapping = aes(x = spermatophoreMass), fill = "#C5351B") +
+  labs(x = "spermatophore mass(g)", y = "Frequency ")
+ggplot(data = fireflies_data) +
+  geom_bar(mapping = aes(x = spermatophoreMass), fill = "#C5351B", 
+           width = 0.001) +
+  labs(x = "spermatophore mass(g)", y = "Frequency") +
+  scale_y_continuous(limits = c(0, 5), expand = expansion(mult = 0)) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black", size = rel(1)),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.ticks.x = element_blank()
+  )
+```
+
+
+
+
 
 > B. What type of graph did you choose in part (A)? Why?
 
-\_\_\_
+\_\_\_Bar Graph
+The values were more legible in bar graph and it was more feasible and easy to customize the graph accordingly.
 
 > C. Describe the shape of the frequency distribution. What are its main features?
 
-\_\_\_
+\_\_\_The shape is right skewed and has an outlier towards at right.
 
 > D. What term would be used to describe the largest measurement in the frequency distribution? You can refer to the lecture slides, your notes, or the textbook.
 
-\_\_\_
+\_\_\_Mode is the largest measurement in the frequency table.
 
 ## Bird orders
 
@@ -31,6 +65,7 @@ I read the data using the code provided by the instructor. The dataset is from t
 
 ```{r}
 library(auk)                          # load the auk package
+library(tidyverse)
 birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
   as_tibble() %>%                     # tibbles print better in the console
   filter(category == "species")       # remove non-species taxa
@@ -38,19 +73,66 @@ birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
 
 > E. How many bird species are in the new birds dataset? How did you find out?
 
-\_\_\_
+
+The bird species were found out to be 10721. Found it from the data table by counting the number of rows.
 
 > H. How many orders are there? You can get this right by counting on the graph, but you will only get full points if you use some code to figure it out.
 
-\_\_\_
+
+41
+Found it from running the code count(birds,order)
 
 > F. Insert an R code chunk and create a graph depicting the distribution of orders in the birds dataset. Sort the orders with the most frequent on the left. It should have legible text and appropriate axis labels.
 
-\_\_\_
+```{r}
+# load packages -----------------------------------------------------------
+
+library(auk)                          # load the auk package
+library(tidyverse)
+
+# Birds -------------------------------------------------------------------
+
+birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
+  as_tibble() %>%                     # tibbles print better in the console
+  filter(category == "species")       # remove non-species taxa
+
+birds
+distinct(birds,order)
+count(birds, order)
+ggplot(data = birds)
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = order))
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = fct_infreq(order)))
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = fct_infreq(order)), fill = "#C5351B")
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = fct_infreq(order)), fill = "#C5351B") +
+  labs(x = "Order", y = "Frequency ")
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = fct_infreq(order)), fill = "#C5351B", 
+           width = 0.8) +
+  labs(x = "Order", y = "Frequency ") +
+  scale_y_continuous( expand = expansion(mult = 0)) +
+  theme_classic(base_size = 10) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black", size = rel(1)),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.ticks.x = element_blank()
+  )
+
+```
+
+
+
+
 
 > G. What kind of graph did you create? Why?
 
 \_\_\_
+Bar Graph
+The values were more legible in bar graph and it was more feasible and easy to customize the graph accordingly.
 
 ## Links to peer review
 
@@ -65,3 +147,5 @@ Here is my session information:
 ```{r}
 sessioninfo::session_info()
 ```
+
+

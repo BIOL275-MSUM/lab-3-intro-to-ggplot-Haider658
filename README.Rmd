@@ -1,6 +1,6 @@
 ---
 title: "Lab 3: Introduction to ggplot"
-author: "___"
+author: "_Haider_"
 date: "`r format(Sys.Date())`"
 output: github_document
 ---
@@ -13,8 +13,8 @@ Welcome to my Lab 2 repository for Quantitative Biology BIOL 275 at MSUM.
 
 The objectives of this lab are:
 
-- ___
-- ___
+- _How to represent data using bar graph_
+- _How to set the image width for an R Markdown code chunk_
 
 ## Repository contents
 
